@@ -25,7 +25,7 @@
 
 ### Telepítés
 
-pip install pyserial requests pillow numpy
+pip install pyserial requests
 
 ### Futtatás
 
@@ -112,7 +112,7 @@ Külön köszönet [Prehistoricman](https://github.com/Prehistoricman/Xbox_SMC) 
 
 ### 🚀 Usage
 
-pip install pyserial requests pillow numpy
+pip install pyserial requests
 python Xyclops-Flasher-Tool.py
 
 #### Main menu
