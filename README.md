@@ -1,10 +1,11 @@
-# 🐼 Xyclops Flasher Tool v1.0 (250521)
+# 🐼 Xyclops Flasher Tool v1.1 (250523)
+
 **Pandafix** ([pandafix.hu](https://pandafix.hu))
 
 ---
 
 > **A Xyclops Flasher Tool egy többnyelvű, platformfüggetlen Python konzolos alkalmazás, amellyel egyszerűen kiolvashatod, írhatod és ellenőrizheted az Xbox 1.6 alaplapokon található Xyclops IC BIOS-t.**  
-> A program támogatja az automatikus COM port kiválasztást, a BIOS dump mágikus fejlécének ellenőrzését, animált visszajelzést ad a folyamatok során, naplózza a műveleteket, és lehetővé teszi BIOS-ok letöltését.
+> A program támogatja az automatikus COM port kiválasztást, a BIOS dump mágikus fejlécének ellenőrzését, animált visszajelzést ad a folyamatok során, naplózza a műveleteket, lehetővé teszi BIOS-ok letöltését, és **beépített támogatási menüpontot** is kínál.
 
 ---
 
@@ -18,18 +19,16 @@
 - 🌐 **BIOS letöltés**: BIOS-ok letöltése (User-Agent fejléccel)
 - 🕹️ **Animáció minden folyamatnál** (|*|, |o| stb.) és részletes visszajelzés
 - 🕒 **Műveleti naplózás**: főmenüben látható, időbélyeggel
+- 💖 **Támogatás menüpont**: PayPal, BuyMeaCoffee, Patreon, GitHub támogatási lehetőségek közvetlenül a programból
 
 ---
 
 ## 🚀 Használat
-
 ### Telepítés
-
 pip install pyserial requests
-
 ### Futtatás
-
 python Xyclops-Flasher-Tool.py
+
 
 ### Nyelv kiválasztása
 
@@ -40,7 +39,8 @@ A program indításakor válaszd ki a kívánt nyelvet.
 1. **Xyclops Dump** (kiolvasás)
 2. **Xyclops Write** (írás)
 3. **BIOS letöltés**
-4. **Kilépés**
+4. **Támogatás**
+5. **Kilépés**
 
 ---
 
@@ -62,6 +62,16 @@ A program indításakor válaszd ki a kívánt nyelvet.
 ### 🌐 BIOS letöltés
 
 - Eredeti BIOS-ok (Cerbios Hybrid, Evox M8 stb.) letöltése a programból.
+
+### 💖 Támogatás menüpont
+
+A főmenü **Támogatás** pontjában az alábbi lehetőségek közül választhatsz, melyek kiválasztásakor automatikusan megnyílik a böngésződ:
+
+- [PayPal](https://www.paypal.com/donate/?hosted_button_id=7BRDHVYY98WK4)
+- [BuyMeaCoffee](https://buymeacoffee.com/pandafix)
+- [Patreon](https://www.patreon.com/pandafix)
+- [GitHub](https://github.com/KonzolozZ)
+- Visszalépés: **éhezni hagylak** (vicces visszalépés a főmenübe)
 
 ### 🕒 Naplózás
 
@@ -98,7 +108,7 @@ Külön köszönet [Prehistoricman](https://github.com/Prehistoricman/Xbox_SMC) 
 # 🇬🇧 English version
 
 > **Xyclops Flasher Tool is a multilingual, cross-platform Python console app for reading, writing, and verifying the Xyclops IC BIOS on Xbox 1.6 motherboards.**  
-> It features automatic COM port selection, magic header verification (at 0x100 offset), animated feedback, operation logging, and BIOS download support.
+> It features automatic COM port selection, magic header verification (at 0x100 offset), animated feedback, operation logging, BIOS download support, and a built-in support menu.
 
 ### ✨ Main Features
 
@@ -109,24 +119,29 @@ Külön köszönet [Prehistoricman](https://github.com/Prehistoricman/Xbox_SMC) 
 - 🌐 **BIOS Download**: Download BIOS files (with User-Agent header)
 - 🕹️ **Animated feedback** for all processes (|*|, |o| etc.)
 - 🕒 **Operation log**: visible in the main menu with timestamps
+- 💖 **Support menu**: PayPal, BuyMeaCoffee, Patreon, GitHub links directly from the program
 
 ### 🚀 Usage
-
+### Install
 pip install pyserial requests
+### Run
 python Xyclops-Flasher-Tool.py
+
 
 #### Main menu
 
 1. **Xyclops Dump** (read)
 2. **Xyclops Write** (write)
 3. **BIOS download**
-4. **Exit**
+4. **Support**
+5. **Exit**
 
 #### Details
 
 - **Dump**: Reads BIOS, checks magic header at 0x100, saves to `Bios/Original dump`.
 - **Write**: Works with `.bin` files in `Bios` folder (max 256KiB), offers backup, shows all steps with animation.
 - **BIOS download**: Download original BIOS files from menu.
+- **Support**: Choose from PayPal, BuyMeaCoffee, Patreon, GitHub (opens browser).
 - **Logging**: All operations logged with timestamp in the main menu.
 
 ### ⚠️ Important
