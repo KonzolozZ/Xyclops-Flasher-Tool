@@ -8,13 +8,14 @@ import serial.tools.list_ports
 import threading
 from datetime import datetime
 import requests
+import webbrowser
 
 # --- Többnyelvű szövegek ---
 translations = {
     'hu': {
         'lang_name': 'Magyar',
         'select_language': 'Válassz nyelvet:',
-        'main_title': 'Xyclops Flasher Tool v1.0 (250521)',
+        'main_title': 'Xyclops Flasher Tool v1.1 (250523)',
         'pandafix': 'Pandafix',
         'pandafix_url': 'pandafix.hu',
         'thanks': 'Köszönet Prehistoricman-nek a Githubra feltöltött munkájáért: github.com/Prehistoricman/Xbox_SMC',
@@ -26,7 +27,15 @@ translations = {
         'menu1': '1. Xyclops Dump (kiolvasás)',
         'menu2': '2. Xyclops Write (írás)',
         'menu3': '3. BIOS letöltés',
-        'menu4': '4. Kilépés',
+        'menu4': '4. Támogatás',
+        'menu5': '5. Kilépés',
+        'support_menu': 'Támogatási lehetőségek:',
+        'support1': '1. PayPal',
+        'support2': '2. BuyMeaCoffee',
+        'support3': '3. Patreon',
+        'support4': '4. GitHub',
+        'support5': '5. éhezni hagylak',
+        'support_opening': 'Megnyitás böngészőben...',
         'select_option': 'Válassz menüpontot:',
         'dump_start': 'BIOS kiolvasás folyamatban...',
         'dump_success': 'Kiolvasás sikeres! ({})',
@@ -67,7 +76,7 @@ translations = {
     'en': {
         'lang_name': 'English',
         'select_language': 'Select language:',
-        'main_title': 'Xyclops Flasher Tool v1.0 (250521)',
+        'main_title': 'Xyclops Flasher Tool v1.1 (250523)',
         'pandafix': 'Pandafix',
         'pandafix_url': 'pandafix.hu',
         'thanks': 'Thanks to Prehistoricman for the work on Github: github.com/Prehistoricman/Xbox_SMC',
@@ -79,7 +88,15 @@ translations = {
         'menu1': '1. Xyclops Dump (read)',
         'menu2': '2. Xyclops Write (write)',
         'menu3': '3. BIOS download',
-        'menu4': '4. Exit',
+        'menu4': '4. Support',
+        'menu5': '5. Exit',
+        'support_menu': 'Support options:',
+        'support1': '1. PayPal',
+        'support2': '2. BuyMeaCoffee',
+        'support3': '3. Patreon',
+        'support4': '4. GitHub',
+        'support5': '5. I let you starve',
+        'support_opening': 'Opening in browser...',
         'select_option': 'Select option:',
         'dump_start': 'BIOS dump in progress...',
         'dump_success': 'Dump successful! ({})',
@@ -120,7 +137,7 @@ translations = {
     'de': {
         'lang_name': 'Deutsch',
         'select_language': 'Sprache auswählen:',
-        'main_title': 'Xyclops Flasher Tool v1.0 (250521)',
+        'main_title': 'Xyclops Flasher Tool v1.1 (250523)',
         'pandafix': 'Pandafix',
         'pandafix_url': 'pandafix.hu',
         'thanks': 'Danke an Prehistoricman für die Arbeit auf Github: github.com/Prehistoricman/Xbox_SMC',
@@ -132,7 +149,15 @@ translations = {
         'menu1': '1. Xyclops Dump (Lesen)',
         'menu2': '2. Xyclops Write (Schreiben)',
         'menu3': '3. BIOS herunterladen',
-        'menu4': '4. Beenden',
+        'menu4': '4. Unterstützung',
+        'menu5': '5. Beenden',
+        'support_menu': 'Unterstützungsmöglichkeiten:',
+        'support1': '1. PayPal',
+        'support2': '2. BuyMeaCoffee',
+        'support3': '3. Patreon',
+        'support4': '4. GitHub',
+        'support5': '5. Ich lasse dich hungern',
+        'support_opening': 'Im Browser öffnen...',
         'select_option': 'Option auswählen:',
         'dump_start': 'BIOS-Auslesen läuft...',
         'dump_success': 'Dump erfolgreich! ({})',
@@ -173,7 +198,7 @@ translations = {
     'fr': {
         'lang_name': 'Français',
         'select_language': 'Choisissez la langue :',
-        'main_title': 'Xyclops Flasher Tool v1.0 (250521)',
+        'main_title': 'Xyclops Flasher Tool v1.1 (250523)',
         'pandafix': 'Pandafix',
         'pandafix_url': 'pandafix.hu',
         'thanks': 'Merci à Prehistoricman pour son travail sur Github : github.com/Prehistoricman/Xbox_SMC',
@@ -185,7 +210,15 @@ translations = {
         'menu1': '1. Xyclops Dump (lecture)',
         'menu2': '2. Xyclops Write (écriture)',
         'menu3': '3. Téléchargement BIOS',
-        'menu4': '4. Quitter',
+        'menu4': '4. Soutien',
+        'menu5': '5. Quitter',
+        'support_menu': 'Options de soutien :',
+        'support1': '1. PayPal',
+        'support2': '2. BuyMeaCoffee',
+        'support3': '3. Patreon',
+        'support4': '4. GitHub',
+        'support5': '5. Je te laisse mourir de faim',
+        'support_opening': 'Ouverture dans le navigateur...',
         'select_option': 'Choisissez une option :',
         'dump_start': 'Lecture du BIOS en cours...',
         'dump_success': 'Lecture réussie ! ({})',
@@ -226,7 +259,7 @@ translations = {
     'es': {
         'lang_name': 'Español',
         'select_language': 'Seleccione idioma:',
-        'main_title': 'Xyclops Flasher Tool v1.0 (250521)',
+        'main_title': 'Xyclops Flasher Tool v1.1 (250523)',
         'pandafix': 'Pandafix',
         'pandafix_url': 'pandafix.hu',
         'thanks': 'Gracias a Prehistoricman por su trabajo en Github: github.com/Prehistoricman/Xbox_SMC',
@@ -238,7 +271,15 @@ translations = {
         'menu1': '1. Xyclops Dump (lectura)',
         'menu2': '2. Xyclops Write (escritura)',
         'menu3': '3. Descargar BIOS',
-        'menu4': '4. Salir',
+        'menu4': '4. Soporte',
+        'menu5': '5. Salir',
+        'support_menu': 'Opciones de soporte:',
+        'support1': '1. PayPal',
+        'support2': '2. BuyMeaCoffee',
+        'support3': '3. Patreon',
+        'support4': '4. GitHub',
+        'support5': '5. Te dejo pasar hambre',
+        'support_opening': 'Abriendo en el navegador...',
         'select_option': 'Seleccione opción:',
         'dump_start': 'Volcado de BIOS en curso...',
         'dump_success': '¡Volcado exitoso! ({})',
@@ -293,7 +334,7 @@ def ascii_logo():
 """
 
 def print_panda_image():
-        print(ascii_logo())
+    print(ascii_logo())
 
 def print_header(tr):
     clear()
@@ -715,6 +756,30 @@ def bios_download(tr):
         else:
             print(tr['invalid_option'])
 
+def support_menu(tr):
+    support_links = [
+        (tr['support1'], "https://www.paypal.com/donate/?hosted_button_id=7BRDHVYY98WK4"),
+        (tr['support2'], "https://buymeacoffee.com/pandafix"),
+        (tr['support3'], "https://www.patreon.com/pandafix"),
+        (tr['support4'], "https://github.com/KonzolozZ"),
+        (tr['support5'], None)
+    ]
+    while True:
+        print()
+        print(tr['support_menu'])
+        for name, _ in support_links:
+            print(name)
+        choice = input(tr['select_option'] + " ").strip()
+        if choice in [str(i+1) for i in range(len(support_links))]:
+            idx = int(choice) - 1
+            if support_links[idx][1] is None:
+                return
+            print(tr['support_opening'])
+            webbrowser.open(support_links[idx][1])
+            print()
+        else:
+            print(tr['invalid_option'])
+
 def main():
     lang = select_language()
     tr = translations[lang]
@@ -726,6 +791,7 @@ def main():
         print(tr['menu2'])
         print(tr['menu3'])
         print(tr['menu4'])
+        print(tr['menu5'])
         print_log(tr)
         choice = input(tr['select_option'] + " ").strip()
         if choice == "1":
@@ -735,6 +801,8 @@ def main():
         elif choice == "3":
             bios_download(tr)
         elif choice == "4":
+            support_menu(tr)
+        elif choice == "5":
             print(tr['exit'])
             time.sleep(1)
             break
